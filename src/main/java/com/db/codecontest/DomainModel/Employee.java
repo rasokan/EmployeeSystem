@@ -3,7 +3,7 @@ package com.db.codecontest.DomainModel;
 public class Employee implements java.io.Serializable {
 
 	private static final long serialVerionUID = 10000L;
-	
+
 	private Integer employeeID;
 
 	private String firstName;
@@ -83,7 +83,5 @@ public class Employee implements java.io.Serializable {
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
-
-	
 
 }

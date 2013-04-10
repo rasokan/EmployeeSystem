@@ -13,191 +13,186 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import com.db.codecontest.DomainModel.Employee;
+import com.db.codecontest.View.Listeners.AddActionListener;
+import com.db.codecontest.View.Listeners.ExitListener;
+import com.db.codecontest.View.Listeners.ModifyListener;
+import com.db.codecontest.View.Listeners.VerifyListener;
 
 public class ViewManager {
 
-	private Label labelId;
-	private Label labelFirstName;
-	private Label labelLastName;
-	private Label labelDateofBirth;
-	private Label labelGender;
-	private Label labelDesignation;
-	private Label labelContactNumber;
-	private Label labelEmailAddress;
-	private Text textId;
-	private Text textFirstName;
-	private Text textLastName;
-	private DateTime textDateofBirth;
-	private Text textDesignation;
-	private Text textContactNumber;
-	private Text textEmailAddress;
-	private static Button buttonAdd;
-	private Button buttonGenderMale;
-	private Button buttonGenderFemale;
-	private GridLayout gridLayout;
-	Display display;
-	GridData gridData;
-	Shell shell;
-	Employee employee;
+	public Employee employee;
 
-	public void initLayouts() {
-		display = new Display();
-		shell = new Shell(display);
+	private UIWidgets uiWidgets;
+
+	public UIWidgets getUiWidgets() {
+		return uiWidgets;
+	}
+
+	public void setUiWidgets(UIWidgets uiWidgets) {
+		this.uiWidgets = uiWidgets;
+	}
+
+	public void initLayouts(UIWidgets uiWidgets) {
+
+		uiWidgets.setDisplay(new Display());
+
+		uiWidgets.setShell(new Shell(uiWidgets.getDisplay()));
+
+		uiWidgets.getShell().setText("Employee System");
 		employee = new Employee();
-		gridLayout = new GridLayout(4, false);
-		gridLayout.numColumns = 4;
-		gridLayout.verticalSpacing = 8;
-		gridLayout.makeColumnsEqualWidth = true;
-		shell.setLayout(gridLayout);
+		uiWidgets.setGridLayout(new GridLayout(4, false));
+		uiWidgets.getGridLayout().numColumns = 4;
+		uiWidgets.getGridLayout().verticalSpacing = 8;
+		uiWidgets.getGridLayout().makeColumnsEqualWidth = true;
+		uiWidgets.getShell().setLayout(uiWidgets.getGridLayout());
 
-		labelId = new Label(shell, SWT.NULL);
-		labelId.setText("EMPLOYEE ID:");
+		uiWidgets.setLabelId(new Label(uiWidgets.getShell(), SWT.NULL));
+		uiWidgets.getLabelId().setText("EMPLOYEE ID:");
 
-		textId = new Text(shell, SWT.SINGLE | SWT.BORDER);
-		gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
-		gridData.horizontalSpan = 3;
-		textId.setLayoutData(gridData);
+		uiWidgets.setTextId(new Text(uiWidgets.getShell(), SWT.SINGLE
+				| SWT.BORDER));
+		uiWidgets.setGridData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
+		uiWidgets.getGridData().horizontalSpan = 3;
+		uiWidgets.getTextId().setLayoutData(uiWidgets.getGridData());
 
-		labelFirstName = new Label(shell, SWT.NULL);
-		labelFirstName.setText("FIRST NAME:");
+		uiWidgets.setLabelFirstName(new Label(uiWidgets.getShell(), SWT.NULL));
+		uiWidgets.getLabelFirstName().setText("FIRST NAME:");
 
-		textFirstName = new Text(shell, SWT.SINGLE | SWT.BORDER);
-		gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
-		gridData.horizontalSpan = 3;
-		textFirstName.setLayoutData(gridData);
+		uiWidgets.setTextFirstName(new Text(uiWidgets.getShell(), SWT.SINGLE
+				| SWT.BORDER));
+		uiWidgets.setGridData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
+		uiWidgets.getGridData().horizontalSpan = 3;
+		uiWidgets.getTextFirstName().setLayoutData(uiWidgets.getGridData());
 
-		labelLastName = new Label(shell, SWT.NULL);
-		labelLastName.setText("LAST NAME:");
+		uiWidgets.setLabelLastName(new Label(uiWidgets.getShell(), SWT.NULL));
+		uiWidgets.getLabelLastName().setText("LAST NAME:");
 
-		textLastName = new Text(shell, SWT.SINGLE | SWT.BORDER);
-		gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
-		gridData.horizontalSpan = 3;
-		textLastName.setLayoutData(gridData);
+		uiWidgets.setTextLastName(new Text(uiWidgets.getShell(), SWT.SINGLE
+				| SWT.BORDER));
+		uiWidgets.setGridData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
+		uiWidgets.getGridData().horizontalSpan = 3;
+		uiWidgets.getTextLastName().setLayoutData(uiWidgets.getGridData());
 
-		labelDateofBirth = new Label(shell, SWT.NULL);
-		labelDateofBirth.setText("DATE OF BIRTH:");
+		uiWidgets
+				.setLabelDateofBirth(new Label(uiWidgets.getShell(), SWT.NULL));
+		uiWidgets.getLabelDateofBirth().setText("DATE OF BIRTH:");
 
-		textDateofBirth = new DateTime(shell, SWT.SINGLE | SWT.BORDER);
+		uiWidgets.setTextDateofBirth(new DateTime(uiWidgets.getShell(),
+				SWT.SINGLE | SWT.BORDER));
 
-		gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
-		gridData.horizontalSpan = 3;
-		textDateofBirth.setLayoutData(gridData);
+		uiWidgets.setGridData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
+		uiWidgets.getGridData().horizontalSpan = 3;
+		uiWidgets.getTextDateofBirth().setLayoutData(uiWidgets.getGridData());
 
-		labelGender = new Label(shell, SWT.NULL);
-		labelGender.setText("GENDER:");
+		uiWidgets.setLabelGender(new Label(uiWidgets.getShell(), SWT.NULL));
+		uiWidgets.getLabelGender().setText("GENDER:");
 
-		gridData = new GridData();
-		gridData.verticalSpan = 2;
-		gridData.horizontalSpan = 3;
-		labelGender.setLayoutData(gridData);
+		uiWidgets.setGridData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
+		uiWidgets.getGridData().verticalSpan = 2;
+		uiWidgets.getGridData().horizontalSpan = 3;
+		uiWidgets.getLabelGender().setLayoutData(uiWidgets.getGridData());
 
-		buttonGenderMale = new Button(shell, SWT.RADIO);
-		buttonGenderMale.setText("Male");
+		uiWidgets.setButtonGenderMale(new Button(uiWidgets.getShell(),
+				SWT.RADIO));
+		uiWidgets.getButtonGenderMale().setText("Male");
 
-		buttonGenderMale.setLayoutData(new GridData(
-				GridData.HORIZONTAL_ALIGN_FILL));
+		uiWidgets.getButtonGenderMale().setLayoutData(
+				new GridData(GridData.HORIZONTAL_ALIGN_FILL));
 
-		buttonGenderFemale = new Button(shell, SWT.RADIO);
-		buttonGenderFemale.setText("Female");
+		uiWidgets.setButtonGenderFemale(new Button(uiWidgets.getShell(),
+				SWT.RADIO));
+		uiWidgets.getButtonGenderFemale().setText("Female");
 
-		buttonGenderFemale.setLayoutData(new GridData(
-				GridData.HORIZONTAL_ALIGN_FILL));
+		uiWidgets.getButtonGenderFemale().setLayoutData(
+				new GridData(GridData.HORIZONTAL_ALIGN_FILL));
 
-		labelDesignation = new Label(shell, SWT.NULL);
-		labelDesignation.setText("DESIGNATION:");
+		uiWidgets
+				.setLabelDesignation(new Label(uiWidgets.getShell(), SWT.NULL));
+		uiWidgets.getLabelDesignation().setText("DESIGNATION:");
 
-		labelDesignation.setLayoutData(new GridData(SWT.LEFT));
+		uiWidgets.getLabelDesignation().setLayoutData(new GridData(SWT.LEFT));
 
-		textDesignation = new Text(shell, SWT.SINGLE | SWT.BORDER);
-		gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
-		gridData.horizontalSpan = 3;
-		textDesignation.setLayoutData(gridData);
+		uiWidgets.setTextDesignation(new Text(uiWidgets.getShell(), SWT.SINGLE
+				| SWT.BORDER));
+		uiWidgets.setGridData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
+		uiWidgets.getGridData().horizontalSpan = 3;
+		uiWidgets.getTextDesignation().setLayoutData(uiWidgets.getGridData());
 
-		labelContactNumber = new Label(shell, SWT.NULL);
-		labelContactNumber.setText("CONTACT NUMBER:");
+		uiWidgets.setLabelContactNumber(new Label(uiWidgets.getShell(),
+				SWT.NULL));
+		uiWidgets.getLabelContactNumber().setText("CONTACT NUMBER:");
 
-		textContactNumber = new Text(shell, SWT.SINGLE | SWT.BORDER);
+		uiWidgets.setTextContactNumber(new Text(uiWidgets.getShell(),
+				SWT.SINGLE | SWT.BORDER));
 
-		gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
-		gridData.horizontalSpan = 3;
-		textContactNumber.setLayoutData(gridData);
+		uiWidgets.setGridData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
+		uiWidgets.getGridData().horizontalSpan = 3;
+		uiWidgets.getTextContactNumber().setLayoutData(uiWidgets.getGridData());
 
-		labelEmailAddress = new Label(shell, SWT.NULL);
-		labelEmailAddress.setText("EMAIL ADDRESS:");
+		uiWidgets
+				.setLabelEmailAddress(new Label(uiWidgets.getShell(), SWT.NULL));
+		uiWidgets.getLabelEmailAddress().setText("EMAIL ADDRESS:");
 
-		textEmailAddress = new Text(shell, SWT.SINGLE | SWT.BORDER);
+		uiWidgets.setTextEmailAddress(new Text(uiWidgets.getShell(), SWT.SINGLE
+				| SWT.BORDER));
 
-		gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
-		gridData.horizontalSpan = 3;
-		textEmailAddress.setLayoutData(gridData);
+		uiWidgets.setGridData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
+		uiWidgets.getGridData().horizontalSpan = 3;
+		uiWidgets.getTextEmailAddress().setLayoutData(uiWidgets.getGridData());
 
-		buttonAdd = new Button(shell, SWT.PUSH);
-		buttonAdd.setText("Add");
+		uiWidgets.setButtonAdd(new Button(uiWidgets.getShell(), SWT.PUSH));
+		uiWidgets.getButtonAdd().setText("Add");
 
-		gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
-		gridData.horizontalSpan = 3;
-		buttonAdd.setLayoutData(gridData);
+		uiWidgets.setGridData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
+		uiWidgets.getGridData().horizontalSpan = 3;
+		uiWidgets.getButtonAdd().setLayoutData(uiWidgets.getGridData());
 
-		buttonAdd.addListener(SWT.Selection, new Listener() {
+		uiWidgets.setButtonExit(new Button(uiWidgets.getShell(), SWT.PUSH));
+		uiWidgets.getButtonExit().setText("Exit");
 
-			public void handleEvent(Event event) {
-				switch (event.type) {
-
-				case SWT.Selection:
-
-					System.out.println("Button Pressed");
-
-					employee.setEmployeeID(Integer.parseInt(textId.getText()
-							.trim().replace(" ", "0")));
-					employee.setFirstName(textFirstName.getText());
-					employee.setLastName(textLastName.getText());
-					employee.setDateofBirth(String.valueOf(textDateofBirth
-							.getYear()));
-					employee.setContactNo(Integer.parseInt(textContactNumber
-							.getText()));
-					employee.setDesignation(textDesignation.getText());
-					employee.setEmailAddress(textEmailAddress.getText());
-					if (buttonGenderMale.getText() != null) {
-						employee.setGender(buttonGenderMale.getText());
-					}
-					if (buttonGenderFemale.getText() != null) {
-						employee.setGender(buttonGenderFemale.getText());
-					}
-
-				}
-
-			}
-
-		});
-
-		shell.pack();
-		shell.setSize(450, 400);
-		shell.open();
+		uiWidgets.setGridData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
+		uiWidgets.getGridData().horizontalSpan = 3;
+		uiWidgets.getButtonExit().setLayoutData(uiWidgets.getGridData());
 
 	}
 
 	/**
 	 * @param shell
 	 */
-	public void disposeLayout() {
-		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-		display.dispose();
-	}
 
 	public static void main(String a[]) {
 
 		ViewManager viewManager = new ViewManager();
 
-		viewManager.initLayouts();
+		UIWidgets uiWidgets = new UIWidgets();
 
-		System.out.println("Employee id:"
-				+ viewManager.employee.getEmployeeID());
+		viewManager.setUiWidgets(uiWidgets);
 
-		viewManager.disposeLayout();
+		viewManager.initLayouts(uiWidgets);
+
+		uiWidgets.getButtonAdd().addListener(SWT.Selection,
+				new AddActionListener(viewManager));
+
+		uiWidgets.getButtonExit().addListener(SWT.Selection,
+				new ExitListener(uiWidgets));
+
+		uiWidgets.getTextId().addListener(SWT.Verify, new VerifyListener());
+
+		uiWidgets.getTextContactNumber().addListener(SWT.Verify,
+				new VerifyListener());
+
+		uiWidgets.getTextId().addListener(SWT.Modify, new ModifyListener());
+
+		viewManager.uiWidgets.getShell().pack();
+		viewManager.uiWidgets.getShell().setSize(450, 400);
+		viewManager.uiWidgets.getShell().open();
+
+		while (!viewManager.uiWidgets.getShell().isDisposed()) {
+			if (!viewManager.uiWidgets.getDisplay().readAndDispatch()) {
+				viewManager.uiWidgets.getDisplay().sleep();
+			}
+		}
+		viewManager.uiWidgets.getDisplay().dispose();
 
 	}
 
